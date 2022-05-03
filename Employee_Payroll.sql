@@ -27,5 +27,7 @@ insert into employee_payroll (name,salary,startDate)
 values('Tyron', 5000, '2021-02-20');
 
 insert into employee_payroll (name,salary,startDate)
-values('Jon', 5000, '2021-03-10')
+values('Jon', 5000, '2021-03-10');
 
+-- UC4
+select * from employee_payroll;
