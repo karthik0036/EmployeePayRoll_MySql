@@ -38,3 +38,16 @@ Salary > 3000;
 
 select * from employee_payroll where
 StartDate BETWEEN '2022-01-01' AND Date(now());
+
+
+-- UC6
+alter table employee_payroll add gender char(1) not null;
+update employee_payroll
+set gender = 'M'
+where id > 0;
+
+select * from employee_payroll;
+
+insert into employee_payroll (name,salary,startDate,gender)
+values('Sansa', 3000, '2022-03-10','F');
+select * from employee_payroll;
