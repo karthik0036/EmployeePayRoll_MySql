@@ -51,3 +51,19 @@ select * from employee_payroll;
 insert into employee_payroll (name,salary,startDate,gender)
 values('Sansa', 3000, '2022-03-10','F');
 select * from employee_payroll;
+
+-- UC-7
+select sum(salary) from employee_payroll
+Where gender = 'M' group by gender;
+
+select avg(salary) from employee_payroll
+Where gender = 'M' group by gender;
+
+select min(salary) from employee_payroll
+Where gender = 'M' group by gender;
+
+select count(salary) from employee_payroll
+Where gender = 'M' group by gender;
+
+select max(salary) from employee_payroll
+Where gender = 'M' group by gender;
