@@ -31,3 +31,10 @@ values('Jon', 5000, '2021-03-10');
 
 -- UC4
 select * from employee_payroll;
+
+-- UC5
+select * from employee_payroll where
+Salary > 3000;
+
+select * from employee_payroll where
+StartDate BETWEEN '2022-01-01' AND Date(now());
