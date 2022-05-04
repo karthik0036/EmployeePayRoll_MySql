@@ -1,8 +1,7 @@
 -- UC1
 create database payroll_services;
 show databases;
-use payroll_services;
-
+use payroll_service;
 -- UC2
 create table employee_payroll
 ( id int not null auto_increment ,
@@ -37,7 +36,7 @@ select * from employee_payroll where
 Salary > 3000;
 
 select * from employee_payroll where
-StartDate BETWEEN '2022-01-01' AND Date(now());
+StartDate BETWEEN CAST('2022-01-01' AS DATE) AND Date(now());
 
 
 -- UC6
@@ -50,6 +49,8 @@ select * from employee_payroll;
 
 insert into employee_payroll (name,salary,startDate,gender)
 values('Sansa', 3000, '2022-03-10','F');
+insert into employee_payroll (name,salary,startDate,gender)
+values('Cersi', 2000, '2021-03-10','F');
 select * from employee_payroll;
 
 -- UC-7
@@ -67,3 +68,16 @@ Where gender = 'M' group by gender;
 
 select max(salary) from employee_payroll
 Where gender = 'M' group by gender;
+
+-- UC-8
+use payroll_service;
+select * from employee_payroll;
+
+ALTER TABLE employee_payroll ADD phoneNo BIGINT;
+UPDATE employee_payroll SET phoneNo = '99999999' 
+where id = 1;
+ALTER table employee_payroll ADD empAddress VARCHAR(100) NOT NULL DEFAULT 'INDIA';
+ALTER TABLE employee_payroll ADD dept VARCHAR(30) NOT NULL DEFAULT 'Research';
+select * from employee_payroll;
+
+
