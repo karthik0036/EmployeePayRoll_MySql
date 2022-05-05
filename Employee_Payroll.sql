@@ -188,3 +188,42 @@ INSERT INTO EmployeeDepartmentTable
 VALUES
 (1,1),(2,2),(3,2),(4,3),(4,4);
 
+-- UC12 Retrieving data for Previous UC's
+
+-- Retrieving All data of All Employees
+SELECT CompanyID,CompanyName,EmployeeID,EmployeeName,Gender,PhoneNo,EmployeeAddress,StartDate,BasicPay,Deductions,TaxablePay,IncomeTax,NetPay,DepartmentName
+FROM CompanyTable
+INNER JOIN EmployeeTable ON CompanyTable.CompanyID = EmployeeTable.CompanySelect
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID
+INNER JOIN EmployeeDepartmentTable ON EmployeeDepartmentTable.EmployeeSelect = EmployeeTable.EmployeeID
+INNER JOIN DepartmentTable ON DepartmentTable.DepartmentID = EmployeeDepartmentTable.DepartmentSelect;
+
+-- Retrieving Payroll Data with Specific Employee Name
+SELECT CompanyID,CompanyName,EmployeeID,EmployeeName,Gender,BasicPay,Deductions,TaxablePay,IncomeTax,NetPay
+FROM CompanyTable
+INNER JOIN EmployeeTable ON EmployeeTable.CompanySelect = CompanyTable.CompanyID AND EmployeeTable.EmployeeName = 'Rocky'
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID;
+
+-- Retrieving Data from a range of Date
+SELECT CompanyID,CompanyName,EmployeeID,EmployeeName,Gender,BasicPay,Deductions,TaxablePay,IncomeTax,NetPay
+FROM CompanyTable
+INNER JOIN EmployeeTable ON CompanyTable.CompanyID = EmployeeTable.CompanySelect AND StartDate BETWEEN CAST('2018-09-15' AS DATE) AND Date(now())
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID;
+
+-- Using Aggregate and grouping by gender
+SELECT AVG(BasicPay) AS AverageSalary,Gender FROM EmployeeTable
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID GROUP BY GENDER;
+
+SELECT SUM(BasicPay) AS TotalSalary,Gender FROM EmployeeTable
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID GROUP BY GENDER;
+
+SELECT MAX(BasicPay) AS MaximumSalary,Gender FROM EmployeeTable
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID GROUP BY GENDER;
+
+SELECT MIN(BasicPay) AS MinimumSalary,Gender FROM EmployeeTable
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID GROUP BY GENDER;
+
+SELECT COUNT(BasicPay) AS CountSalary,Gender FROM EmployeeTable
+INNER JOIN PayrollTable ON PayrollTable.EmployeeSelect = EmployeeTable.EmployeeID GROUP BY GENDER;
+
+
