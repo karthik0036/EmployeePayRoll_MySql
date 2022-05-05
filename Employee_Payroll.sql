@@ -51,6 +51,7 @@ insert into employee_payroll (name,salary,startDate,gender)
 values('Sansa', 3000, '2022-03-10','F');
 insert into employee_payroll (name,salary,startDate,gender)
 values('Cersi', 2000, '2021-03-10','F');
+
 select * from employee_payroll;
 
 -- UC-7
@@ -81,3 +82,12 @@ ALTER TABLE employee_payroll ADD dept VARCHAR(30) NOT NULL DEFAULT 'Research';
 select * from employee_payroll;
 
 
+-- UC9 
+ALTER TABLE employee_payroll RENAME COLUMN salary TO BasicPay;
+ALTER TABLE employee_payroll ADD Deductions FLOAT NOT NULL DEFAULT 0.00;
+ALTER TABLE employee_payroll ADD TaxablePay FLOAT NOT NULL DEFAULT 0.00;
+ALTER TABLE employee_payroll ADD IncomeTax FLOAT NOT NULL DEFAULT 0.00;
+ALTER TABLE employee_payroll ADD NetPay FLOAT NOT NULL DEFAULT 0.00;
+
+UPDATE employee_payroll SET NetPay = (BasicPay - Deductions - TaxablePay - IncomeTax);
+SET SQL_SAFE_UPDATES = 0;
