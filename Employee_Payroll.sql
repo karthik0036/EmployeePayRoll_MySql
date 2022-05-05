@@ -90,4 +90,17 @@ ALTER TABLE employee_payroll ADD IncomeTax FLOAT NOT NULL DEFAULT 0.00;
 ALTER TABLE employee_payroll ADD NetPay FLOAT NOT NULL DEFAULT 0.00;
 
 UPDATE employee_payroll SET NetPay = (BasicPay - Deductions - TaxablePay - IncomeTax);
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 0; -- turns off safe update mode
+SET SQL_SAFE_UPDATES = 1; -- turns on safe update mode
+
+-- UC10 Adding Department Cersi as Sales & Marketing Both
+UPDATE employee_payroll SET dept = 'Sales' WHERE name = 'Cersi';
+select * from employee_payroll;
+INSERT INTO employee_payroll 
+VALUES
+(7,'Cersi',2000,'2021-03-10','F',NULL,'INDIA','Marketing',0.00,0.00,0.00,6000);
+
+
+
+
+
